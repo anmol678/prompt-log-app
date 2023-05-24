@@ -4,9 +4,10 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
+import { SiteHeader } from "@/components/layout/site-header"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
+import NavigationSidebar from "@/components/layout/side-nav"
 
 export const metadata: Metadata = {
   title: {
@@ -41,10 +42,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
-              <div className="flex-1">{children}</div>
-            </div>
+            <main className="flex min-w-screen">
+              <aside className="fixed top-0 left-0 flex-col flex-shrink-0 w-64 h-screen bg-background border-r border-b justify-between lg:flex">
+                <NavigationSidebar />
+              </aside>
+              <div className="w-full pl-64">
+                <SiteHeader />
+                <div className="w-full space-y-4 md:p-8 p-4 pt-6 h-screen overflow-auto">{children}</div>
+              </div>
+            </main>
             <TailwindIndicator />
           </ThemeProvider>
         </body>

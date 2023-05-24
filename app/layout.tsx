@@ -48,7 +48,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
               </aside>
               <div className="w-full pl-64">
                 <SiteHeader />
-                <div className="w-full space-y-4 md:p-8 p-4 pt-6 h-screen overflow-auto bg-secondary">{children}</div>
+                <div className="w-full space-y-4 md:p-8 p-4 pt-6 h-screen overflow-auto bg-secondary/50">{children}</div>
               </div>
             </main>
             <TailwindIndicator />

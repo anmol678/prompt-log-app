@@ -12,11 +12,14 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
     const timeFormater = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
     return {
+        id: logRequest.id,
         request_time: `${dateFormater.format(date)}, ${timeFormater.format(date)}`,
         function_name: logRequest.function_name,
         provider: logRequest.provider_type,
         model: logRequest.kwargs.model || logRequest.kwargs.model_name || "",
         tags: logRequest.tags,
+        prompt: logRequest.prompt,
+        response: logRequest.response,
     };
 }
 

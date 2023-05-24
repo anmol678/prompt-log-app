@@ -1,10 +1,13 @@
 
 export type Log = {
+    id: number
     request_time: string
     function_name: string
     model: string
     provider: string
     tags: string[]
+    prompt: Array<{ content: string; role: string }> | Record<string, unknown>;
+    response: Array<{ content: string; role: string }> | Record<string, unknown>;
 }
 
 export type LogRequest = {

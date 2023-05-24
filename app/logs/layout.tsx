@@ -6,10 +6,8 @@ interface LayoutProps {
 
 export default async function Layout({ children }: LayoutProps) {
     return (
-        <Grid numCols={1} className="gap-2">
-            <Col numColSpan={1}>
-                {children}
-            </Col>
-        </Grid >
+        <Grid numCols={1} className="gap-4">
+            {children}
+        </Grid>
     )
 }

@@ -1,9 +1,10 @@
 import { Card, Title } from "@tremor/react";
-import { MessageStack, MessageStackProps } from "./message-stack";
+import { MessageStack } from "./message-stack";
+import { Message } from "@/types/message";
 
 type MessageCardProps = {
     title: string
-    messages: MessageStackProps
+    messages: Message[]
 }
 
 export default async function MessageCard({ title, messages }: MessageCardProps) {

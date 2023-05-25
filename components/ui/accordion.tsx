@@ -12,7 +12,6 @@ const Accordion = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Root
     ref={ref}
-    type="multiple"
     className={cn("h-full overflow-y-scroll", className)}
     {...props}
   />

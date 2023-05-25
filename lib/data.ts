@@ -1,5 +1,6 @@
 import { Log, LogRequest } from "@/types/log"
 import api from "./client"
+import { calculateResponseTime } from "./utils";
 
 export async function getLogs(): Promise<Log[]> {
     const logRequests: LogRequest[] = await api.getLogs();
@@ -11,6 +12,8 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
     const dateFormater = new Intl.DateTimeFormat('en-US', { month: 'long', day: '2-digit' });
     const timeFormater = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
+    const response_time = calculateResponseTime(logRequest.request_end_time, logRequest.request_start_time)
+
     return {
         id: logRequest.id,
         request_time: `${dateFormater.format(date)}, ${timeFormater.format(date)}`,
@@ -20,6 +23,10 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
         tags: logRequest.tags,
         prompt: logRequest.prompt,
         response: logRequest.response,
+        cost: logRequest.cost,
+        tokens: logRequest.token_usage.total_tokens,
+        temperature: logRequest.kwargs.temperature ?? -1,
+        response_time,
     };
 }
 

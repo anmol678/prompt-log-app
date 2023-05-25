@@ -1,3 +1,4 @@
+import { Message } from "./message";
 
 export type Log = {
     id: number
@@ -6,13 +7,13 @@ export type Log = {
     model: string
     provider: string
     tags: string[]
-    prompt: Array<{ content: string; role: string }> | Record<string, unknown>;
-    response: Array<{ content: string; role: string }> | Record<string, unknown>;
+    prompt: Array<Message> | Record<string, unknown>;
+    response: Array<Message> | Record<string, unknown>;
 }
 
 export type LogRequest = {
     function_name: string;
-    prompt: Array<{ content: string; role: string }> | Record<string, unknown>;
+    prompt: Array<Message> | Record<string, unknown>;
     kwargs: Partial<{
         max_tokens: number | null;
         model: string;
@@ -24,7 +25,7 @@ export type LogRequest = {
     }>;
     request_start_time: string;
     request_end_time: string;
-    response: Array<{ content: string; role: string }> | Record<string, unknown>;
+    response: Array<Message> | Record<string, unknown>;
     provider_type: string;
     token_usage: {
         prompt_tokens: number;

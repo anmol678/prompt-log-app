@@ -1,6 +1,8 @@
-import { Col, Card, Title, Text, Grid } from "@tremor/react";
+import { Col, Grid } from "@tremor/react";
 import { getLogs } from "@/lib/data"
 import { Log } from "@/types/log"
+import HeaderCard from "./header-card";
+import MessageCard from "./message-card";
 
 export default async function Page({ params }: { params: { id: string } }) {
     const data: Log[] = await getLogs()
@@ -9,26 +11,18 @@ export default async function Page({ params }: { params: { id: string } }) {
     if (!log) return <div>Log not found</div>
 
     return (
-        <>
+        <Grid numCols={1} className="gap-4 h-full flex flex-col">
             <Col numColSpan={1}>
-                <Card>
-                    <Title className="mb-2">{log.function_name}</Title>
-                    <Text>{log.provider}, {log.model}</Text>
-                    <Text>{log.tags}</Text>
-                </Card>
+                <HeaderCard log={log} />
             </Col>
-            <Grid numCols={2} className="gap-4">
+            <Grid numCols={2} className="gap-4 flex-grow">
                 <Col>
-                    <Card>
-                        <Text>{JSON.stringify(log.prompt)}</Text>
-                    </Card>
+                    <MessageCard title="Prompt" messages={log.prompt} />
                 </Col>
                 <Col>
-                    <Card>
-                        <Text>{JSON.stringify(log.response)}</Text>
-                    </Card>
+                    <MessageCard title="Response" messages={log.response} />
                 </Col>
             </Grid>
-        </>
+        </Grid >
     )
 }

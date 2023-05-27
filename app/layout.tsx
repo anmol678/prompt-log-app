@@ -46,9 +46,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
               <aside className="fixed top-0 left-0 flex-col flex-shrink-0 w-64 h-screen bg-background border-r border-b justify-between lg:flex">
                 <NavigationSidebar />
               </aside>
-              <div className="w-full pl-64">
+              <div className="w-full pl-64 bg-secondary/50">
                 <SiteHeader />
-                <div className="w-full space-y-4 md:p-8 p-4 pt-6 h-screen overflow-auto bg-secondary/50">{children}</div>
+                <div className="w-full space-y-4 md:p-8 p-4 pt-6 h-screen overflow-auto">{children}</div>
               </div>
             </main>
             <TailwindIndicator />

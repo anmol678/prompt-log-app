@@ -3,6 +3,7 @@ import {
   Moon,
   SunMedium,
   Twitter,
+  List,
   type Icon as LucideIcon,
 } from "lucide-react"
 
@@ -28,4 +29,5 @@ export const Icons = {
       ></path>
     </svg>
   ),
+  list: List,
 }

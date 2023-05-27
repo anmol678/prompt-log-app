@@ -54,9 +54,9 @@ const Logo: React.FC = () => (
 const NavigationSidebar: React.FC = () => (
     <nav className="space-y-4 py-4">
         <Logo />
-        <NavigationGroup title={'Home'}>
-            <NavigationItem route="/" title="Home" icon={Icons.logo} />
-            <NavigationItem route="/logs" title="Logs" icon={Icons.twitter} />
+        <NavigationGroup title={''}>
+            {/* <NavigationItem route="/" title="Home" icon={Icons.logo} /> */}
+            <NavigationItem route="/logs" title="Logs" icon={Icons.list} />
         </NavigationGroup>
     </nav>
 );

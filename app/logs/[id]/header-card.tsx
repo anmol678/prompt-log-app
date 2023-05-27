@@ -18,7 +18,7 @@ export default async function LogHeader({ log: {
 } }: LogHeaderProps) {
     return (
         <Card className="p-6 flex gap-4 justify-between">
-            <div className="flex flex-col justify-between flex-shrink-2 w-2/3">
+            <div className="flex flex-col justify-between flex-shrink-2 w-[calc(100%-243px)]">
                 <div className="flex flex-col">
                     <Title className="text-foreground/90 text-2xl font-bold mr-2 break-words">{function_name}</Title>
                     <Text className="text-accent-foreground/90 text-md">{request_time}</Text>
@@ -28,7 +28,7 @@ export default async function LogHeader({ log: {
                         {tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="bg-secondary text-secondary-foreground/75 font-medium text-md border py-2 px-2 rounded-lg mr-2 mb-2"
+                                className="bg-secondary text-secondary-foreground/75 font-medium text-md border py-2 px-2 rounded-lg mr-2"
                             >
                                 {tag}
                             </span>

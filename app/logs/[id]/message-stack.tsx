@@ -22,8 +22,12 @@ type AccordionItemProps = {
 
 function MessageAccordion({ message: { role, content }, index }: AccordionItemProps) {
     return (
-        <AccordionItem value={`${index}`}>
-            <AccordionTrigger>{role}</AccordionTrigger>
+        <AccordionItem value={`${index}`} className="mb-1">
+            <AccordionTrigger title={role}>
+                <span id="hide-text" className="pt-1">
+                    {content.slice(0, 100)}
+                </span>
+            </AccordionTrigger>
             <AccordionContent>{content}</AccordionContent>
         </AccordionItem>
     )

@@ -9,8 +9,8 @@ type MessageCardProps = {
 
 export default async function MessageCard({ title, messages }: MessageCardProps) {
     return (
-        <Card className="bg-background h-[calc(80vh)] flex flex-col overflow-hidden">
-            <Title className="text-foreground mb-4">{title}</Title>
+        <Card className="h-[calc(80vh)] flex flex-col overflow-hidden">
+            <Title className="text-foreground/90 font-bold text-xl mb-4">{title}</Title>
             <MessageStack messages={messages} />
         </Card>
     )

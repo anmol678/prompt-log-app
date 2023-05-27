@@ -80,3 +80,7 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+.tremor-Card-root {
+  @apply bg-background ring-ring rounded-lg;
+}

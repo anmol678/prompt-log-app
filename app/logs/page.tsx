@@ -11,7 +11,7 @@ export default async function Page() {
         <Grid numCols={1} className="gap-4">
             <Col numColSpan={1}>
                 <Card>
-                    <Title className="mb-8">Logs</Title>
+                    <Title className="mb-4 text-xl font-bold text-foreground">Logs</Title>
                     <DataTable columns={columns} data={data} />
                 </Card>
             </Col>

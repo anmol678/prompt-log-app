@@ -5,8 +5,7 @@ import { columns } from "./_components/columns"
 import { DataTable } from "./_components/data-table";
 
 export default async function Page() {
-    let t = await getLogs()
-    const data: Log[] = [...t, ...t, ...t, ...t, ...t]
+    const data: Log[] = await getLogs()
 
     return (
         <Grid numCols={1} className="gap-4">

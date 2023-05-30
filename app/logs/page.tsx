@@ -1,11 +1,12 @@
 import { Grid, Col, Card, Title } from "@tremor/react";
 import { getLogs } from "@/lib/data"
 import { Log } from "@/types/log"
-import { columns } from "./columns"
-import { DataTable } from "./data-table";
+import { columns } from "./_components/columns"
+import { DataTable } from "./_components/data-table";
 
 export default async function Page() {
-    const data: Log[] = await getLogs()
+    let t = await getLogs()
+    const data: Log[] = [...t, ...t, ...t, ...t, ...t]
 
     return (
         <Grid numCols={1} className="gap-4">

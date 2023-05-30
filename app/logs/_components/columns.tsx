@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { Log } from "@/types/log"
-import { ArrowUpDown } from "lucide-react"
+import { SortAsc, SortDesc } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export const columns: ColumnDef<Log>[] = [
@@ -17,7 +17,10 @@ export const columns: ColumnDef<Log>[] = [
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
                     Time
-                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                    {column.getIsSorted() === "asc"
+                        ? <SortAsc className="ml-2 h-4 w-4" />
+                        : <SortDesc className="ml-2 h-4 w-4" />
+                    }
                 </Button>
             )
         },

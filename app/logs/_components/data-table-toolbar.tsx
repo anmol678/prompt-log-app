@@ -8,42 +8,26 @@ import { Input } from "@/components/ui/input"
 
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
 
-import {
-    ArrowBigDown,
-    ArrowRight,
-    ArrowUpCircle,
-    ArrowBigUp,
-    CheckCircle2,
-    Circle,
-    HelpCircle,
-    XCircle,
-} from "lucide-react"
-
 export const statuses = [
     {
         value: "backlog",
         label: "Backlog",
-        icon: HelpCircle,
     },
     {
         value: "todo",
         label: "Todo",
-        icon: Circle,
     },
     {
         value: "in progress",
         label: "In Progress",
-        icon: ArrowUpCircle,
     },
     {
         value: "done",
         label: "Done",
-        icon: CheckCircle2,
     },
     {
         value: "canceled",
         label: "Canceled",
-        icon: XCircle,
     },
 ]
 
@@ -51,17 +35,14 @@ export const priorities = [
     {
         label: "Low",
         value: "low",
-        icon: ArrowBigDown,
     },
     {
         label: "Medium",
         value: "medium",
-        icon: ArrowRight,
     },
     {
         label: "High",
         value: "high",
-        icon: ArrowBigUp,
     },
 ]
 

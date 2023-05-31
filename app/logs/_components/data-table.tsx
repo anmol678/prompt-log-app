@@ -3,9 +3,11 @@
 import React, { useState } from "react"
 import {
     ColumnDef,
+    ColumnFiltersState,
     SortingState,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
     useReactTable,
@@ -33,6 +35,9 @@ export function DataTable<TData, TValue>({
     data,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
+    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+        []
+    )
 
     const router = useRouter();
     const table = useReactTable({
@@ -42,14 +47,17 @@ export function DataTable<TData, TValue>({
         getPaginationRowModel: getPaginationRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
+        onColumnFiltersChange: setColumnFilters,
+        getFilteredRowModel: getFilteredRowModel(),
         state: {
             sorting,
+            columnFilters,
         },
     })
 
     return (
         <>
-            <DataTableToolbar table={table} />
+            <DataTableToolbar table={table} data={data} />
             <div className="rounded-md border bg-background">
                 <Table>
                     <TableHeader>

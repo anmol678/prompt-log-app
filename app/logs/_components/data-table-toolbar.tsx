@@ -7,56 +7,24 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 import { DataTableFacetedFilter } from "./data-table-faceted-filter"
-
-export const statuses = [
-    {
-        value: "backlog",
-        label: "Backlog",
-    },
-    {
-        value: "todo",
-        label: "Todo",
-    },
-    {
-        value: "in progress",
-        label: "In Progress",
-    },
-    {
-        value: "done",
-        label: "Done",
-    },
-    {
-        value: "canceled",
-        label: "Canceled",
-    },
-]
-
-export const priorities = [
-    {
-        label: "Low",
-        value: "low",
-    },
-    {
-        label: "Medium",
-        value: "medium",
-    },
-    {
-        label: "High",
-        value: "high",
-    },
-]
-
+import { getUniqueModels, getUniqueTags } from "@/lib/utils"
+import { Log } from "@/types/log"
 
 interface DataTableToolbarProps<TData> {
     table: Table<TData>
+    data: TData[]
 }
 
 export function DataTableToolbar<TData>({
     table,
+    data,
 }: DataTableToolbarProps<TData>) {
     const isFiltered =
         table.getPreFilteredRowModel().rows.length >
         table.getFilteredRowModel().rows.length
+
+    const tags = getUniqueTags(data).map(t => ({ label: t, value: t }));
+    const models = getUniqueModels(data).map(t => ({ label: t, value: t }));
 
     return (
         <div className="flex items-center justify-between mb-4">
@@ -73,14 +41,14 @@ export function DataTableToolbar<TData>({
                     <DataTableFacetedFilter
                         column={table.getColumn("model")}
                         title="Model"
-                        options={statuses}
+                        options={models}
                     />
                 )}
                 {table.getColumn("tags") && (
                     <DataTableFacetedFilter
                         column={table.getColumn("tags")}
                         title="Tags"
-                        options={priorities}
+                        options={tags}
                     />
                 )}
                 {isFiltered && (

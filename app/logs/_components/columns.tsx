@@ -32,10 +32,12 @@ export const columns: ColumnDef<Log>[] = [
     {
         accessorKey: "tags",
         header: "Tags",
+        filterFn: "arrIncludesSome",
     },
     {
         accessorKey: "model",
         header: "Model",
+        filterFn: "arrIncludesSome",
     },
     {
         accessorKey: "provider",

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { cn } from "@/lib/utils"
 import { Icons } from '@/components/icons';
+import { ThemeToggle } from "@/components/theme-toggle"
 
 interface NavigationItemProps {
     route: string;
@@ -52,12 +53,17 @@ const Logo: React.FC = () => (
 );
 
 const NavigationSidebar: React.FC = () => (
-    <nav className="space-y-4 py-4">
-        <Logo />
-        <NavigationGroup title={''}>
-            {/* <NavigationItem route="/" title="Home" icon={Icons.logo} /> */}
-            <NavigationItem route="/logs" title="Logs" icon={Icons.list} />
-        </NavigationGroup>
+    <nav className="flex flex-col justify-between space-y-4 py-4 h-screen">
+        <div>
+            <Logo />
+            <NavigationGroup title={''}>
+                {/* <NavigationItem route="/" title="Home" icon={Icons.logo} /> */}
+                <NavigationItem route="/logs" title="Logs" icon={Icons.list} />
+            </NavigationGroup>
+        </div>
+        <div className="p-4">
+            <ThemeToggle />
+        </div>
     </nav>
 );
 

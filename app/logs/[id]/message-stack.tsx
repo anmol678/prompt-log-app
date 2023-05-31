@@ -1,4 +1,5 @@
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import TextContainer from "@/components/ui/text-container";
 import { Message } from "@/types/message";
 
 type MessageStackProps = {
@@ -28,7 +29,9 @@ function MessageAccordion({ message: { role, content }, index }: AccordionItemPr
                     {content.slice(0, 100)}
                 </span>
             </AccordionTrigger>
-            <AccordionContent>{content}</AccordionContent>
+            <AccordionContent>
+                <TextContainer text={content} />
+            </AccordionContent>
         </AccordionItem>
     )
 }

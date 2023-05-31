@@ -1,6 +1,7 @@
 import { Log, LogRequest } from "@/types/log"
 import api from "./client"
 import { calculateResponseTime } from "./utils";
+import { Message } from "@/types/message";
 
 export async function getLogs(): Promise<Log[]> {
     const logRequests: LogRequest[] = await api.getLogs();
@@ -14,15 +15,25 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
 
     const response_time = calculateResponseTime(logRequest.request_start_time, logRequest.request_end_time)
 
+    let prompt = logRequest.prompt;
+    if (Array.isArray(prompt) && typeof prompt[0] === 'string') {
+        prompt = [{ content: prompt[0], role: 'user' }];
+    }
+
+    let response = logRequest.response;
+    if (typeof response === 'object' && 'text' in response && typeof response.text === 'string') {
+        response = [{ content: response.text, role: 'assistant' }];
+    }
+
     return {
         id: logRequest.id,
         request_time: `${dateFormater.format(date)}, ${timeFormater.format(date)}`,
         function_name: logRequest.function_name,
         provider: logRequest.provider_type,
-        model: logRequest.kwargs.model || logRequest.kwargs.model_name || "",
+        model: logRequest.kwargs.model || logRequest.kwargs.model_name || '',
         tags: logRequest.tags,
-        prompt: logRequest.prompt,
-        response: logRequest.response,
+        prompt,
+        response,
         cost: logRequest.cost,
         tokens: logRequest.token_usage.total_tokens,
         temperature: logRequest.kwargs.temperature ?? -1,
@@ -34,150 +45,3 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
 function convertLogRequestsToLogs(logRequests: LogRequest[]): Log[] {
     return logRequests.map(convertLogRequestToLog);
 }
-
-export const logs: LogRequest[] = [
-    {
-        "function_name": "langchain.PromptLayerChatOpenAI.async",
-        "prompt": [
-            {
-                "content": "You are PrivacyGPT, ",
-                "role": "system"
-            },
-            {
-                "content": "PrivacyGPT, ",
-                "role": "user"
-            }
-        ],
-        "kwargs": {
-            "max_tokens": null,
-            "model": "gpt-3.5-turbo",
-            "n": 1,
-            "request_timeout": null,
-            "stream": false,
-            "temperature": 0.3
-        },
-        "request_start_time": "2023-05-20T09:30:06",
-        "request_end_time": "2023-05-20T09:30:00",
-        "response": [
-            {
-                "content": "The provided text is not available. Please provide the text to be analyzed.",
-                "role": "assistant"
-            }
-        ],
-        "provider_type": "langchain",
-        "token_usage": {
-            "prompt_tokens": 500,
-            "completion_tokens": 673,
-            "total_tokens": 1173
-        },
-        "cost": 0.002346,
-        "tags": [
-            "Privacy Scorecard",
-            "Google"
-        ],
-        "id": 1,
-        "project": {
-            "title": "test",
-            "tags": [
-                "tags"
-            ],
-            "id": 1
-        }
-    },
-    {
-        "function_name": "langchain.PromptLayerChatOpenAI.async",
-        "prompt": [
-            {
-                "content": "You are PrivacyGPT, ",
-                "role": "system"
-            },
-            {
-                "content": "PrivacyGPT, ",
-                "role": "user"
-            }
-        ],
-        "kwargs": {
-            "max_tokens": null,
-            "model": "gpt-3.5-turbo",
-            "n": 1,
-            "request_timeout": null,
-            "stream": false,
-            "temperature": 0.3
-        },
-        "request_start_time": "2023-05-20T09:30:06",
-        "request_end_time": "2023-05-20T09:30:00",
-        "response": [
-            {
-                "content": "The provided text is not available. Please provide the text to be analyzed.",
-                "role": "assistant"
-            }
-        ],
-        "provider_type": "langchain",
-        "token_usage": {
-            "prompt_tokens": 500,
-            "completion_tokens": 673,
-            "total_tokens": 1173
-        },
-        "cost": 0.002346,
-        "tags": [
-            "Privacy Scorecard",
-            "Google"
-        ],
-        "id": 2,
-        "project": {
-            "title": "test",
-            "tags": [
-                "tags"
-            ],
-            "id": 1
-        }
-    },
-    {
-        "function_name": "langchain.PromptLayerChatOpenAI.async",
-        "prompt": [
-            {
-                "content": "You are PrivacyGPT, ",
-                "role": "system"
-            },
-            {
-                "content": "PrivacyGPT, ",
-                "role": "user"
-            }
-        ],
-        "kwargs": {
-            "max_tokens": null,
-            "model": "gpt-3.5-turbo",
-            "n": 1,
-            "request_timeout": null,
-            "stream": false,
-            "temperature": 0.3
-        },
-        "request_start_time": "2023-05-20T09:30:06",
-        "request_end_time": "2023-05-20T09:30:00",
-        "response": [
-            {
-                "content": "The provided text is not available. Please provide the text to be analyzed.",
-                "role": "assistant"
-            }
-        ],
-        "provider_type": "langchain",
-        "token_usage": {
-            "prompt_tokens": 500,
-            "completion_tokens": 673,
-            "total_tokens": 1173
-        },
-        "cost": 0.002346,
-        "tags": [
-            "Privacy Scorecard",
-            "Google"
-        ],
-        "id": 3,
-        "project": {
-            "title": "tetra",
-            "tags": [
-                "req"
-            ],
-            "id": 2
-        }
-    }
-]

@@ -12,7 +12,7 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
     const dateFormater = new Intl.DateTimeFormat('en-US', { month: 'long', day: '2-digit' });
     const timeFormater = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
 
-    const response_time = calculateResponseTime(logRequest.request_end_time, logRequest.request_start_time)
+    const response_time = calculateResponseTime(logRequest.request_start_time, logRequest.request_end_time)
 
     return {
         id: logRequest.id,

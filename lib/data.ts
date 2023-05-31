@@ -76,7 +76,7 @@ export const logs: LogRequest[] = [
         ],
         "id": 1,
         "project": {
-            "name": "test",
+            "title": "test",
             "tags": [
                 "tags"
             ],
@@ -124,7 +124,7 @@ export const logs: LogRequest[] = [
         ],
         "id": 2,
         "project": {
-            "name": "test",
+            "title": "test",
             "tags": [
                 "tags"
             ],
@@ -172,7 +172,7 @@ export const logs: LogRequest[] = [
         ],
         "id": 3,
         "project": {
-            "name": "tetra",
+            "title": "tetra",
             "tags": [
                 "req"
             ],

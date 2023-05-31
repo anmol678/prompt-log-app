@@ -40,7 +40,7 @@ export type LogRequest = {
     tags: string[]
     id: number
     project: {
-        name: string
+        title: string
         tags: string[]
         id: number
     } | null

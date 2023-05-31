@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { Log } from "@/types/log"
 import { SortAsc, SortDesc } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 
 export const columns: ColumnDef<Log>[] = [
     {
@@ -33,11 +34,33 @@ export const columns: ColumnDef<Log>[] = [
         accessorKey: "tags",
         header: "Tags",
         filterFn: "arrIncludesSome",
+        cell: ({ row }) => {
+            const tags: string[] = row.getValue("tags")
+            return (
+                <div className="flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                        <Badge
+                            key={tag}
+                            variant="secondary"
+                        >
+                            {tag}
+                        </Badge>
+                    ))}
+                </div>
+            )
+        },
     },
     {
         accessorKey: "model",
         header: "Model",
         filterFn: "arrIncludesSome",
+        cell: ({ row }) => (
+            <div className="flex flex-wrap gap-2">
+                <Badge variant="outline">
+                    {row.getValue("model")}
+                </Badge>
+            </div>
+        ),
     },
     {
         accessorKey: "provider",

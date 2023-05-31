@@ -27,6 +27,7 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
         tokens: logRequest.token_usage.total_tokens,
         temperature: logRequest.kwargs.temperature ?? -1,
         response_time,
+        project: logRequest.project,
     };
 }
 

@@ -13,6 +13,11 @@ export type Log = {
     tokens: number
     cost: number
     tags: string[]
+    project: {
+        title: string
+        tags: string[]
+        id: number
+    } | null
 }
 
 export type LogRequest = {

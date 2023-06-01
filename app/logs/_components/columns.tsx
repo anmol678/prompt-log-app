@@ -31,6 +31,12 @@ export const columns: ColumnDef<Log>[] = [
         header: "Function",
     },
     {
+        accessorKey: "project",
+        accessorFn: (log) => log.project?.title,
+        header: "Project",
+        filterFn: "arrIncludesSome",
+    },
+    {
         accessorKey: "tags",
         header: "Tags",
         filterFn: "arrIncludesSome",
@@ -62,9 +68,4 @@ export const columns: ColumnDef<Log>[] = [
             </div>
         ),
     },
-    {
-        accessorKey: "provider",
-        header: "Provider",
-    },
-
 ]

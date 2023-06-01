@@ -13,6 +13,17 @@ export function calculateResponseTime(requestTime: string, responseTime: string)
   return `${responseTimeInSeconds}s`;
 }
 
+export function getUniqueProjects(logs: Log[]): string[] {
+  let uniqueProjects: Set<string> = logs.reduce((projectSet, log) => {
+    if (log.project) {
+      projectSet.add(log.project.title);
+    }
+    return projectSet;
+  }, new Set<string>());
+
+  return Array.from(uniqueProjects);
+}
+
 export function getUniqueTags(logs: Log[]): string[] {
   let uniqueTags: Set<string> = logs.reduce((tagSet, log) => {
     if (log.tags) {

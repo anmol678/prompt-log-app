@@ -5,6 +5,7 @@ import { Log } from "@/types/log"
 import { SortAsc, SortDesc } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { parseISO } from "date-fns"
 
 export const columns: ColumnDef<Log>[] = [
     {
@@ -24,6 +25,11 @@ export const columns: ColumnDef<Log>[] = [
                     }
                 </Button>
             )
+        },
+        sortingFn: (rowA, rowB, columnId) => {
+            const dateA = parseISO(rowA.getValue(columnId));
+            const dateB = parseISO(rowB.getValue(columnId));
+            return dateA > dateB ? 1 : -1;
         },
     },
     {

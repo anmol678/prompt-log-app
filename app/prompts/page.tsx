@@ -1,20 +1,24 @@
-import { Grid, Col, Card, Title } from "@tremor/react";
-import { getPromptTemplates } from "@/lib/data"
+import { Grid, Col, Card } from "@tremor/react";
+import AddPromptButton from "./_components/add-prompt-button";
+import PromptTemplateCard from "./_components/prompt-template-card";
 import { PromptTemplate } from "@/types/prompt-template";
+import { getPromptTemplates } from "@/lib/data"
 
 export default async function Page() {
     const data: PromptTemplate[] = await getPromptTemplates()
-
-    console.log(data);
-
 
     return (
         <Grid numCols={1} className="gap-4">
             <Col numColSpan={1}>
                 <Card>
-                    <Title className="mb-4 text-xl font-bold text-foreground">Prompts</Title>
-                    <div>
-                        {JSON.stringify(data)}
+                    <div className="flex justify-between items-center mb-6">
+                        <h2 className="text-2xl font-bold text-foreground">Prompts</h2>
+                        <AddPromptButton />
+                    </div>
+                    <div className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+                        {data.map((template) => (
+                            <PromptTemplateCard key={template.id} template={template} />
+                        ))}
                     </div>
                 </Card>
             </Col>

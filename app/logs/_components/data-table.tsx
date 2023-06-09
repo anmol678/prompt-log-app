@@ -21,7 +21,7 @@ export default function DataTable<TData, TValue>({
         []
     )
 
-    const router = useRouter();
+    const router = useRouter()
     const table = useReactTable({
         data,
         columns,

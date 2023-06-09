@@ -9,7 +9,7 @@ type MetadataBadgeProps = {
 }
 
 export default function MetadataBadge({ title, content, mono = true }: MetadataBadgeProps) {
-    (
+    return (
         <Badge
             variant="secondary"
             className={cn(

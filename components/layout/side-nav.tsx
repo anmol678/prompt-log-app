@@ -15,7 +15,7 @@ interface NavigationItemProps {
 
 const NavigationItem: React.FC<NavigationItemProps> = ({ route, title, icon: Icon }) => {
     const pathname = usePathname();
-    const isActive = pathname.endsWith(route)
+    const isActive = pathname.startsWith(route)
     return (
         <Link
             href={route}

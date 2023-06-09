@@ -1,6 +1,10 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
+import { RequestOptions, APIResponse } from '@/types/client';
+import { LogRequest } from '@/types/log';
 
 class Client {
+    private http: AxiosInstance;
+
     constructor() {
         this.http = axios.create({
             baseURL: 'http://127.0.0.1:8000/api',
@@ -10,7 +14,7 @@ class Client {
         });
     }
 
-    async request({ method, url, data }) {
+    async request<T>({ method, url, data }: RequestOptions): Promise<T> {
         try {
             const response = await this.http({
                 method,
@@ -26,11 +30,11 @@ class Client {
 }
 
 class LogsAPI extends Client {
-    getLogs() {
+
+    getLogs(): Promise<LogRequest[]> {
         return this.request({ method: 'GET', url: '/logs' });
     }
+
 }
 
-const api = new LogsAPI();
-
-export default api;
+export const logsAPI = new LogsAPI();

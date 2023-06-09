@@ -1,11 +1,15 @@
 import { Log, LogRequest } from "@/types/log"
-import api from "./client"
+import { logsAPI } from "./client"
 import { calculateResponseTime } from "./utils";
 import { Message } from "@/types/message";
 
 export async function getLogs(): Promise<Log[]> {
     const logRequests: LogRequest[] = await api.getLogs();
     return convertLogRequestsToLogs(logRequests);
+}
+
+function convertLogRequestsToLogs(logRequests: LogRequest[]): Log[] {
+    return logRequests.map(convertLogRequestToLog);
 }
 
 function convertLogRequestToLog(logRequest: LogRequest): Log {

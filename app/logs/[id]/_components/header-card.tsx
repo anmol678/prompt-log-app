@@ -1,13 +1,13 @@
 import { Card, Title, Text } from "@tremor/react";
+import Tag from "@/components/ui/tag";
+import MetadataBadge from "@/components/ui/metadata-badge";
 import { Log } from "@/types/log"
-import { Tag } from "@/components/ui/tag";
-import { MetadataBadge } from "@/components/ui/metadata-badge";
 
 type LogHeaderProps = {
     log: Log
 }
 
-export default async function LogHeader({ log: {
+export default function LogHeader({ log: {
     function_name,
     request_time,
     provider,

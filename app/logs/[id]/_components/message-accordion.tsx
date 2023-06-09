@@ -7,7 +7,7 @@ type AccordionItemProps = {
     index: number
 }
 
-export function MessageAccordion({ message: { role, content }, index }: AccordionItemProps) {
+export default function MessageAccordion({ message: { role, content }, index }: AccordionItemProps) {
     return (
         <AccordionItem value={`${index}`} className="mb-1">
             <AccordionTrigger title={role}>

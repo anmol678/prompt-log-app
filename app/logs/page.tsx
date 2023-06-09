@@ -1,8 +1,8 @@
 import { Grid, Col, Card, Title } from "@tremor/react";
+import { columns } from "./_components/columns"
+import DataTable from "./_components/data-table";
 import { getLogs } from "@/lib/data"
 import { Log } from "@/types/log"
-import { columns } from "./_components/columns"
-import { DataTable } from "./_components/data-table";
 
 export default async function Page() {
     const data: Log[] = await getLogs()

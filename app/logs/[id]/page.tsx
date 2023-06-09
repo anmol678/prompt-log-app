@@ -1,8 +1,8 @@
 import { Col, Grid } from "@tremor/react";
-import { getLogs } from "@/lib/data"
+import HeaderCard from "./_components/header-card";
+import MessageCard from "./_components/message-card";
 import { Log } from "@/types/log"
-import HeaderCard from "./header-card";
-import MessageCard from "./message-card";
+import { getLogs } from "@/lib/data"
 
 export default async function Page({ params }: { params: { id: string } }) {
     const data: Log[] = await getLogs()

@@ -1,10 +1,10 @@
 "use client"
 
 import { ColumnDef } from "@tanstack/react-table"
-import { Log } from "@/types/log"
-import { SortAsc, SortDesc } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { SortAsc, SortDesc } from "lucide-react"
+import { Log } from "@/types/log"
 import { parseISO } from "date-fns"
 
 export const columns: ColumnDef<Log>[] = [

@@ -8,16 +8,18 @@ type MetadataBadgeProps = {
     mono?: boolean
 }
 
-export const MetadataBadge = ({ title, content, mono = true }: MetadataBadgeProps) => (
-    <Badge
-        variant="secondary"
-        className={cn(
-            "px-2 h-8 border-ring text-md font-medium text-accent-foreground/75 whitespace-nowrap",
-            mono && "font-mono"
-        )}
-    >
-        {title}
-        < Separator orientation="vertical" className="mx-2" />
-        {content}
-    </Badge >
-)
+export default function MetadataBadge({ title, content, mono = true }: MetadataBadgeProps) {
+    (
+        <Badge
+            variant="secondary"
+            className={cn(
+                "px-2 h-8 border-ring text-md font-medium text-accent-foreground/75 whitespace-nowrap",
+                mono && "font-mono"
+            )}
+        >
+            {title}
+            < Separator orientation="vertical" className="mx-2" />
+            {content}
+        </Badge >
+    )
+}

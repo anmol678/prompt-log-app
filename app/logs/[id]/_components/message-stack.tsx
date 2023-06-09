@@ -1,12 +1,12 @@
 import { Accordion } from "@/components/ui/accordion";
+import MessageAccordion from "./message-accordion";
 import { Message } from "@/types/message";
-import { MessageAccordion } from "./message-accordion";
 
 type MessageStackProps = {
     messages: Message[]
 }
 
-export function MessageStack({ messages }: MessageStackProps) {
+export default function MessageStack({ messages }: MessageStackProps) {
     return (
         <Accordion type="multiple">
             {messages.map((message, index) => (

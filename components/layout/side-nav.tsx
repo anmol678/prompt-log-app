@@ -59,6 +59,7 @@ const NavigationSidebar: React.FC = () => (
             <NavigationGroup title={''}>
                 {/* <NavigationItem route="/" title="Home" icon={Icons.logo} /> */}
                 <NavigationItem route="/logs" title="Logs" icon={Icons.list} />
+                <NavigationItem route="/prompts" title="Prompts" icon={Icons.list} />
             </NavigationGroup>
         </div>
         <div className="p-4">

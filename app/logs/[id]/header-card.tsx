@@ -1,8 +1,7 @@
 import { Card, Title, Text } from "@tremor/react";
 import { Log } from "@/types/log"
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+import { Tag } from "@/components/ui/tag";
+import { MetadataBadge } from "@/components/ui/metadata-badge";
 
 type LogHeaderProps = {
     log: Log
@@ -47,32 +46,3 @@ export default async function LogHeader({ log: {
     );
 };
 
-type TagProps = {
-    content: string
-}
-
-const Tag = ({ content }: TagProps) => (
-    <Badge variant="secondary" className="px-2 h-8 border-ring text-md font-medium text-accent-foreground/75 whitespace-nowrap">
-        {content}
-    </Badge>
-)
-
-type MetadataBadgeProps = {
-    title: string
-    content: string | number
-    mono?: boolean
-}
-
-const MetadataBadge = ({ title, content, mono = true }: MetadataBadgeProps) => (
-    <Badge
-        variant="secondary"
-        className={cn(
-            "px-2 h-8 border-ring text-md font-medium text-accent-foreground/75 whitespace-nowrap",
-            mono && "font-mono"
-        )}
-    >
-        {title}
-        < Separator orientation="vertical" className="mx-2" />
-        {content}
-    </Badge >
-)

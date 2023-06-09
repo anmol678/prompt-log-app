@@ -1,10 +1,10 @@
 import { Log, LogRequest } from "@/types/log"
-import { logsAPI } from "./client"
+import { logsAPI, promptTemplatesAPI } from "./client"
 import { calculateResponseTime } from "./utils";
-import { Message } from "@/types/message";
+import { PromptTemplate } from "@/types/prompt-template";
 
 export async function getLogs(): Promise<Log[]> {
-    const logRequests: LogRequest[] = await api.getLogs();
+    const logRequests: LogRequest[] = await logsAPI.getLogs();
     return convertLogRequestsToLogs(logRequests);
 }
 
@@ -43,9 +43,11 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
         temperature: logRequest.kwargs.temperature ?? -1,
         response_time,
         project: logRequest.project,
+        prompt_templates: logRequest.prompt_templates,
     };
 }
 
-function convertLogRequestsToLogs(logRequests: LogRequest[]): Log[] {
-    return logRequests.map(convertLogRequestToLog);
+export async function getPromptTemplates(): Promise<PromptTemplate[]> {
+    const prompt_templates: PromptTemplate[] = await promptTemplatesAPI.getPromptTemplates();
+    return prompt_templates;
 }

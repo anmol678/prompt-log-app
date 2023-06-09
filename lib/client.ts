@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { RequestOptions, APIResponse } from '@/types/client';
 import { LogRequest } from '@/types/log';
+import { PromptTemplate, PromptTemplateCreate, PromptTemplatePatch } from '@/types/prompt-template';
 
 class Client {
     private http: AxiosInstance;
@@ -37,4 +38,29 @@ class LogsAPI extends Client {
 
 }
 
+class PromptTemplatesAPI extends Client {
+
+    getPromptTemplates(): Promise<PromptTemplate[]> {
+        return this.request({ method: 'GET', url: '/prompt-templates' });
+    }
+
+    getPromptTemplate(id: number): Promise<PromptTemplate> {
+        return this.request({ method: 'GET', url: `/prompt-templates/${id}` });
+    }
+
+    createPromptTemplate(data: PromptTemplateCreate): Promise<PromptTemplate> {
+        return this.request({ method: 'POST', url: '/prompt-templates', data });
+    }
+
+    updatePromptTemplate(id: number, data: PromptTemplatePatch): Promise<PromptTemplate> {
+        return this.request({ method: 'PATCH', url: `/prompt-templates/${id}`, data });
+    }
+
+    deletePromptTemplate(id: number): Promise<void> {
+        return this.request({ method: 'DELETE', url: `/prompt-templates/${id}` });
+    }
+
+}
+
 export const logsAPI = new LogsAPI();
+export const promptTemplatesAPI = new PromptTemplatesAPI();

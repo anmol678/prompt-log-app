@@ -1,4 +1,4 @@
-import { Grid, Col, Card, Title } from "@tremor/react";
+import { Grid, Col, Card } from "@tremor/react";
 import { columns } from "./_components/columns"
 import DataTable from "./_components/data-table";
 import { getLogs } from "@/lib/data"
@@ -11,7 +11,7 @@ export default async function Page() {
         <Grid numCols={1} className="gap-4">
             <Col numColSpan={1}>
                 <Card>
-                    <Title className="mb-4 text-xl font-bold text-foreground">Logs</Title>
+                    <h2 className="mb-4 text-2xl font-bold text-foreground">Logs</h2>
                     <DataTable columns={columns} data={data} />
                 </Card>
             </Col>

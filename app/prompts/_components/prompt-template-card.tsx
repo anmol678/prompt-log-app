@@ -1,16 +1,19 @@
 "use client"
 
-import { Card } from "@tremor/react";
-import MetadataBadge from "@/components/ui/metadata-badge";
-import Tag from "@/components/ui/tag";
-import { PromptTemplate } from "@/types/prompt-template";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation"
+import { Card } from "@tremor/react"
+
+import { PromptTemplate } from "@/types/prompt-template"
+import MetadataBadge from "@/components/ui/metadata-badge"
+import Tag from "@/components/ui/tag"
 
 type PromptTemplateCardProps = {
     template: PromptTemplate
 }
 
-export default function PromptTemplateCard({ template }: PromptTemplateCardProps) {
+export default function PromptTemplateCard({
+    template,
+}: PromptTemplateCardProps) {
     const router = useRouter()
 
     return (
@@ -22,9 +25,13 @@ export default function PromptTemplateCard({ template }: PromptTemplateCardProps
                 {template.title}
             </h3>
             <div className="flex flex-wrap gap-2">
-                {template.project &&
-                    <MetadataBadge title='project' content={template.project.title} mono={false} />
-                }
+                {template.project && (
+                    <MetadataBadge
+                        title="project"
+                        content={template.project.title}
+                        mono={false}
+                    />
+                )}
                 {template.tags.map((tag, index) => (
                     <Tag key={index} content={tag} />
                 ))}

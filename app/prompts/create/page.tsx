@@ -1,20 +1,18 @@
 "use client"
 
-import { useState } from "react"
 import { Card } from "@tremor/react"
-
-import { PromptTemplateCreate, TemplateCreate } from "@/types/prompt-template"
-import { promptTemplatesAPI } from "@/lib/client"
 import Title from "@/components/ui/title"
-
 import PromptTemplateForm from "../_components/prompt-template-form"
+import { PromptTemplateCreate } from "@/types/prompt-template"
+import { promptTemplatesAPI } from "@/lib/client"
+import { useRouter } from "next/navigation"
 
 const CreatePromptTemplate: React.FC = () => {
-  
+  const router = useRouter()
+
   const handleSubmit = async (form: PromptTemplateCreate) => {
-    // const response = await promptTemplatesAPI.createPromptTemplate(form)
-    console.log(form);
-    
+    await promptTemplatesAPI.createPromptTemplate(form)
+    router.push('/prompts')
   }
 
   return (

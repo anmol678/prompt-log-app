@@ -6,7 +6,7 @@ type TemplateBase = {
     format: string;
 };
 
-type TemplateCreate = TemplateBase;
+export type TemplateCreate = TemplateBase;
 
 type Template = TemplateBase & {
     id: number;

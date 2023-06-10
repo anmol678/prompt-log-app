@@ -1,7 +1,6 @@
 import { Log, LogRequest } from "@/types/log"
-import { logsAPI, promptTemplatesAPI } from "./client"
+import { logsAPI } from "./client"
 import { calculateResponseTime } from "./utils";
-import { PromptTemplate } from "@/types/prompt-template";
 
 export async function getLogs(): Promise<Log[]> {
     const logRequests: LogRequest[] = await logsAPI.getLogs();
@@ -45,9 +44,4 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
         project: logRequest.project,
         prompt_templates: logRequest.prompt_templates,
     };
-}
-
-export async function getPromptTemplates(): Promise<PromptTemplate[]> {
-    const prompt_templates: PromptTemplate[] = await promptTemplatesAPI.getPromptTemplates();
-    return prompt_templates;
 }

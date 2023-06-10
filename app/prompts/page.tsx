@@ -3,11 +3,11 @@ import AddPromptButton from "./_components/add-prompt-button";
 import PromptTemplateCard from "./_components/prompt-template-card";
 import Title from "@/components/ui/title";
 import { PromptTemplate } from "@/types/prompt-template";
-import { getPromptTemplates } from "@/lib/data"
+import { promptTemplatesAPI as api } from "@/lib/client"
 
 export default async function Page() {
-    const data: PromptTemplate[] = await getPromptTemplates()
-
+    const data: PromptTemplate[] = await api.getPromptTemplates()
+    
     return (
         <Card>
             <div className="flex justify-between items-center mb-6">

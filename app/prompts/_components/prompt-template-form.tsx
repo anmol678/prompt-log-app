@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-import { PromptTemplateCreate, TemplateCreate } from "@/types/prompt-template"
+import { PromptTemplateCreate } from "@/types/prompt-template"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -141,7 +141,7 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
                     Use semi-colon as a delimiter to add multiple tags.
                 </p>
             </div>
-            <div className="mb-4">
+            <div className="mb-6">
                 <label className="text-sm font-medium leading-none">
                     Project
                 </label>
@@ -158,7 +158,7 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
                 </p>
             </div>
             <Button type="submit" size="default">
-                Save
+                Save Template
             </Button>
         </form>
     )

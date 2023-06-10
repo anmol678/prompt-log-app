@@ -1,28 +1,34 @@
-import axios, { AxiosInstance } from 'axios';
 import { RequestOptions, APIResponse } from '@/types/client';
 import { LogRequest } from '@/types/log';
 import { PromptTemplate, PromptTemplateCreate, PromptTemplatePatch } from '@/types/prompt-template';
 
 class Client {
-    private http: AxiosInstance;
+    private baseURL: string;
 
     constructor() {
-        this.http = axios.create({
-            baseURL: 'http://127.0.0.1:8000/api',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+        this.baseURL = 'http://127.0.0.1:8000/api';
     }
 
-    async request<T>({ method, url, data }: RequestOptions): Promise<T> {
+    async request<T>({ method, url, data, useNoStore = false }: RequestOptions): Promise<T> {
         try {
-            const response = await this.http({
+            const response = await fetch(this.baseURL + url, {
                 method,
-                url,
-                data,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                ...(data && ({
+                    body: JSON.stringify(data),
+                })),
+                ...(useNoStore && ({
+                    cache: 'no-store',
+                }))
             });
-            return response.data;
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+
+            return response.json();
         } catch (error) {
             console.error(error);
             throw error;
@@ -31,17 +37,14 @@ class Client {
 }
 
 class LogsAPI extends Client {
-
     getLogs(): Promise<LogRequest[]> {
         return this.request({ method: 'GET', url: '/logs' });
     }
-
 }
 
 class PromptTemplatesAPI extends Client {
-
     getPromptTemplates(): Promise<PromptTemplate[]> {
-        return this.request({ method: 'GET', url: '/prompt-templates' });
+        return this.request({ method: 'GET', url: '/prompt-templates', useNoStore: true });
     }
 
     getPromptTemplate(id: number): Promise<PromptTemplate> {
@@ -59,7 +62,6 @@ class PromptTemplatesAPI extends Client {
     deletePromptTemplate(id: number): Promise<void> {
         return this.request({ method: 'DELETE', url: `/prompt-templates/${id}` });
     }
-
 }
 
 export const logsAPI = new LogsAPI();

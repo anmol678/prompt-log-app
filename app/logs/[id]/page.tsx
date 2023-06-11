@@ -2,11 +2,10 @@ import { Col, Grid } from "@tremor/react";
 import HeaderCard from "./_components/header-card";
 import MessageCard from "./_components/message-card";
 import { Log } from "@/types/log"
-import { getLogs } from "@/lib/data"
+import { getLog } from "@/lib/data"
 
 export default async function Page({ params }: { params: { id: string } }) {
-    const data: Log[] = await getLogs()
-    const log: Log | undefined = data.find(l => l.id === Number(params.id))
+    const log: Log = await getLog(Number(params.id))
 
     if (!log) return <div>Log not found</div>
 

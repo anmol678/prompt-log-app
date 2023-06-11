@@ -8,8 +8,8 @@ export type Log = {
     provider: string
     model: string
     temperature: number
-    prompt: Message[] | Record<string, unknown>
-    response: Message[] | Record<string, unknown>
+    prompt: Message[]
+    response: Message[]
     request_time: string
     response_time: string
     tokens: number

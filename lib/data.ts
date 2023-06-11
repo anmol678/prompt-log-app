@@ -7,6 +7,11 @@ export async function getLogs(): Promise<Log[]> {
     return convertLogRequestsToLogs(logRequests);
 }
 
+export async function getLog(id: number): Promise<Log> {
+    const logRequest: LogRequest = await logsAPI.getLog(id);
+    return convertLogRequestToLog(logRequest);
+}
+
 function convertLogRequestsToLogs(logRequests: LogRequest[]): Log[] {
     return logRequests.map(convertLogRequestToLog);
 }

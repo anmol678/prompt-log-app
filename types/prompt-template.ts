@@ -8,7 +8,7 @@ type TemplateBase = {
 
 export type TemplateCreate = TemplateBase;
 
-type Template = TemplateBase & {
+export type Template = TemplateBase & {
     id: number;
     version: number;
     created_at: Date;

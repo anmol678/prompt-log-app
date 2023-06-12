@@ -1,13 +1,13 @@
 "use client"
 
 import { useState } from "react"
-
 import { PromptTemplateCreate } from "@/types/prompt-template"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
+import { inferInputVariables } from "@/lib/utils"
 
 type Props = {
     onSubmit: (form: PromptTemplateCreate) => Promise<void>
@@ -27,15 +27,7 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
 
     const [error, setError] = useState<string | null>(null)
 
-    const inferInputVariables = (prompt: string) => {
-        const regex = /\{+(.*?)\}+/g
-        const matches = []
-        let match
-        while ((match = regex.exec(prompt)) !== null) {
-            matches.push(match[1])
-        }
-        return matches
-    }
+
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
@@ -124,7 +116,6 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
                             {"Define input variables using {braces}"}
                         </label>
                     )}
-                    {/* <Input className="mt-1 border-0 text-md font-medium" disabled value={JSON.stringify(form.template.input_variables)} /> */}
                 </div>
             </div>
             <div className="mb-4">

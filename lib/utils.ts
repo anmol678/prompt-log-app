@@ -45,3 +45,13 @@ export function getUniqueModels(logs: Log[]): string[] {
 
   return Array.from(uniqueModels);
 }
+
+export function inferInputVariables(prompt: string) {
+  const regex = /\{+(.*?)\}+/g
+  const matches = []
+  let match
+  while ((match = regex.exec(prompt)) !== null) {
+    matches.push(match[1])
+  }
+  return matches
+}

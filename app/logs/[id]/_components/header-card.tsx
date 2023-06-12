@@ -1,7 +1,7 @@
 import { Card, Title, Text } from "@tremor/react";
-import Tag from "@/components/ui/tag";
 import MetadataBadge from "@/components/ui/metadata-badge";
 import { Log } from "@/types/log"
+import MetadataTags from "@/components/ui/metadata-tags";
 
 type LogHeaderProps = {
     log: Log
@@ -23,16 +23,15 @@ export default function LogHeader({ log: {
         <Card className="p-6 flex flex-col md:flex-row gap-4 justify-between min-h-[calc(15vh)]">
             <div className="flex flex-col justify-between flex-shrink-2 md:w-[calc(100%-240px)] gap-4">
                 <div className="flex flex-col">
-                    <Title className="text-foreground/90 text-2xl font-bold mr-2 break-words">{function_name}</Title>
-                    <Text className="text-accent-foreground/90 text-md">{request_time}</Text>
+                    <Title className="text-foreground/90 text-2xl font-bold mr-2 break-words">
+                        {function_name}
+                    </Title>
+                    <Text className="text-accent-foreground/90 text-md">
+                        {request_time}
+                    </Text>
                 </div>
                 <div className="flex flex-col space-y-4">
-                    <div className="flex flex-wrap gap-2">
-                        {project && <MetadataBadge title='project' content={project.title} mono={false} />}
-                        {tags.map((tag, index) => (
-                            <Tag key={index} content={tag} />
-                        ))}
-                    </div>
+                    <MetadataTags project={project} tags={tags} />
                 </div>
             </div>
             <div className="flex items-center content-start w-auto gap-2 flex-wrap py-2 md:px-4">

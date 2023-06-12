@@ -52,7 +52,7 @@ class PromptTemplatesAPI extends Client {
     }
 
     getPromptTemplate(id: number): Promise<PromptTemplate> {
-        return this.request({ method: 'GET', url: `/prompt-templates/${id}` });
+        return this.request({ method: 'GET', url: `/prompt-templates/${id}`, useNoStore: true });
     }
 
     createPromptTemplate(data: PromptTemplateCreate): Promise<PromptTemplate> {

@@ -1,7 +1,7 @@
 import { Card } from "@tremor/react";
 import AddPromptButton from "./_components/add-prompt-button";
 import PromptTemplateCard from "./_components/prompt-template-card";
-import Title from "@/components/ui/title";
+import { Heading2 } from "@/components/ui/heading";
 import { PromptTemplate } from "@/types/prompt-template";
 import { promptTemplatesAPI as api } from "@/lib/client"
 
@@ -11,7 +11,7 @@ export default async function Page() {
     return (
         <Card>
             <div className="flex justify-between items-center mb-6">
-                <Title>Prompts</Title>
+                <Heading2>Prompts</Heading2>
                 <AddPromptButton />
             </div>
             <div className="grid lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">

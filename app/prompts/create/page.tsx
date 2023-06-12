@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@tremor/react"
-import Title from "@/components/ui/title"
+import { Heading2 } from "@/components/ui/heading"
 import PromptTemplateForm from "../_components/prompt-template-form"
 import { PromptTemplateCreate } from "@/types/prompt-template"
 import { promptTemplatesAPI } from "@/lib/client"
@@ -18,7 +18,7 @@ const CreatePromptTemplate: React.FC = () => {
   return (
     <Card>
         <div className="flex justify-between items-center mb-6">
-            <Title>Create a Prompt Template</Title>
+            <Heading2>Create a Prompt Template</Heading2>
         </div>
         <PromptTemplateForm onSubmit={handleSubmit} />
     </Card>

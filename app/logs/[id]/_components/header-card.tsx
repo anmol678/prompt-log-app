@@ -1,4 +1,5 @@
-import { Card, Title, Text } from "@tremor/react";
+import { Card, Text } from "@tremor/react";
+import { Heading2 } from "@/components/ui/heading";
 import MetadataBadge from "@/components/ui/metadata-badge";
 import { Log } from "@/types/log"
 import MetadataTags from "@/components/ui/metadata-tags";
@@ -23,9 +24,9 @@ export default function LogHeader({ log: {
         <Card className="p-6 flex flex-col md:flex-row gap-4 justify-between min-h-[calc(15vh)]">
             <div className="flex flex-col justify-between flex-shrink-2 md:w-[calc(100%-240px)] gap-4">
                 <div className="flex flex-col">
-                    <Title className="text-foreground/90 text-2xl font-bold mr-2 break-words">
+                    <Heading2 className="mr-2 break-words">
                         {function_name}
-                    </Title>
+                    </Heading2>
                     <Text className="text-accent-foreground/90 text-md">
                         {request_time}
                     </Text>

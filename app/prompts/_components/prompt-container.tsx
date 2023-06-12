@@ -10,18 +10,18 @@ type Props = {
 
 const PromptContainer: React.FC<Props> = ({ prompt, input_variables, onChange }) => {
 
-    const isDisabled = onChange == undefined
+    const isReadOnly = onChange == undefined
 
     return (
         <div className="mb-4 rounded-md border border-input ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
             <Textarea
                 name="prompt"
                 id="prompt"
-                className={`font-medium ${isDisabled ? '' : 'min-h-[calc(40vh)]'}`}
+                className={`font-medium ${isReadOnly ? '' : 'min-h-[calc(40vh)]'}`}
                 placeholder="Write a prompt..."
                 value={prompt}
                 onChange={onChange}
-                readOnly={isDisabled}
+                readOnly={isReadOnly}
             />
             <Separator />
             <div className="px-3 py-2">
@@ -46,7 +46,7 @@ const PromptContainer: React.FC<Props> = ({ prompt, input_variables, onChange })
                     </>
                 ) : (
                     <label className="text-muted-foreground text-md">
-                        {"Define input variables using {braces}"}
+                        {isReadOnly ? "No Input Variables" : "Define input variables using {braces}"}
                     </label>
                 )}
             </div>

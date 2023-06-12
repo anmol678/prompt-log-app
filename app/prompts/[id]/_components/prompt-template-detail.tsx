@@ -1,5 +1,6 @@
 import { Grid, Card } from "@tremor/react";
 import { PromptTemplate } from "@/types/prompt-template";
+import PromptTemplateHeaderCard from "./prompt-template-header";
 
 type PromptTemplateDetailProps = {
     template: PromptTemplate
@@ -11,6 +12,7 @@ export default function PromptTemplateDetail({ template }: PromptTemplateDetailP
         <>
             <Grid numCols={2} className="gap-4 flex flex-none min-h-[calc(12vh)] max-h-[calc(16vh)]">
                 <Card className="p-6">
+                    <PromptTemplateHeaderCard template={template} />
                 </Card>
             </Grid>
             <Card className="min-h-[calc(16vh)] text-wrap break-words">

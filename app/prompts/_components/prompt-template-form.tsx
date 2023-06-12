@@ -78,6 +78,8 @@ const PromptTemplateForm: React.FC<Props> = ({ template, onSubmit }) => {
             }
             if (name === "tags")
                 updatedForm.tags = value.split(";").map((tag) => tag.trim())
+            if (name === "project")
+                updatedForm.project = value.length ? value : null
             return updatedForm
         })
     }

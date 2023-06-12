@@ -40,5 +40,5 @@ export type PromptTemplatePatch = {
     title?: string;
     tags?: string[];
     template?: TemplateCreate;
-    project?: string;
+    project?: string | null;
 };

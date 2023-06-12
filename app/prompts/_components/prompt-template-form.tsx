@@ -2,11 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { PromptTemplate, PromptTemplateCreate } from "@/types/prompt-template"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Separator } from "@/components/ui/separator"
-import { Textarea } from "@/components/ui/textarea"
+import PromptContainer from "./prompt-container"
 import { inferInputVariables } from "@/lib/utils"
 
 type Props = {
@@ -97,43 +95,11 @@ const PromptTemplateForm: React.FC<Props> = ({ template, onSubmit }) => {
                     onChange={handleChange}
                 />
             </div>
-            <div className="mb-4 rounded-md border border-input ring-offset-background focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
-                <Textarea
-                    name="prompt"
-                    id="prompt"
-                    className="font-medium"
-                    placeholder="Write a prompt..."
-                    value={form.template.prompt}
-                    onChange={handleChange}
-                />
-                <Separator />
-                <div className="px-3 py-2">
-                    {form.template.input_variables.length ? (
-                        <>
-                            <label className="text-sm font-medium leading-none">
-                                Input Variables
-                            </label>
-                            <div className="mt-2 mb-1 flex flex-wrap gap-2">
-                                {form.template.input_variables.map(
-                                    (variable, index) => (
-                                        <Badge
-                                            key={index}
-                                            variant="secondary"
-                                            className="px-2 py-0 rounded-xl border-ring border-2 text-md font-medium text-accent-foreground/75 whitespace-nowrap"
-                                        >
-                                            {variable}
-                                        </Badge>
-                                    )
-                                )}
-                            </div>
-                        </>
-                    ) : (
-                        <label className="text-muted-foreground text-md">
-                            {"Define input variables using {braces}"}
-                        </label>
-                    )}
-                </div>
-            </div>
+            <PromptContainer
+                prompt={form.template.prompt}
+                input_variables={form.template.input_variables}
+                onChange={handleChange}
+            />
             <div className="mb-4">
                 <label className="text-sm font-medium leading-none">Tags</label>
                 <Input

@@ -6,7 +6,7 @@ import Timeline from "./template-timeline";
 import PromptTemplateHeader from "./prompt-template-header";
 import { Heading3 } from "@/components/ui/heading";
 import PromptContainer from "../../_components/prompt-container";
-import { PromptTemplate } from "@/types/prompt-template";
+import { PromptTemplate, Template } from "@/types/prompt-template";
 import { useRouter } from "next/navigation";
 
 type PromptTemplateDetailProps = {
@@ -18,7 +18,7 @@ export default function PromptTemplateDetail({ template }: PromptTemplateDetailP
 
     const [selectedTemplateIndex, setSelectedTemplate] = useState(0)
 
-    const selectedTemplate = template.templates[selectedTemplateIndex]
+    const selectedTemplate: Template = template.templates[selectedTemplateIndex]
 
     function handleEdit() {
         router.push(`/prompts/${template.id}/edit`);

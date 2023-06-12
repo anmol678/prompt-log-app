@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import DataTableFacetedFilter from "./data-table-faceted-filter"
 import { X } from "lucide-react"
 import { getUniqueProjects, getUniqueTags, getUniqueModels } from "@/lib/utils"
+import { Log } from "@/types/log"
 
 interface DataTableToolbarProps<TData> {
     table: Table<TData>
@@ -20,9 +21,9 @@ export default function DataTableToolbar<TData>({
         table.getPreFilteredRowModel().rows.length >
         table.getFilteredRowModel().rows.length
 
-    const projects = getUniqueProjects(data).map(p => ({ label: p, value: p }));
-    const tags = getUniqueTags(data).map(t => ({ label: t, value: t }));
-    const models = getUniqueModels(data).map(m => ({ label: m, value: m }));
+    const projects = getUniqueProjects(data as Log[]).map(p => ({ label: p, value: p }));
+    const tags = getUniqueTags(data as Log[]).map(t => ({ label: t, value: t }));
+    const models = getUniqueModels(data as Log[]).map(m => ({ label: m, value: m }));
 
     return (
         <div className="flex items-center justify-between mb-4">

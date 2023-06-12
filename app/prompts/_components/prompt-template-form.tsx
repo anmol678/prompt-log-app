@@ -1,7 +1,7 @@
 "use client"
 
-import { useState } from "react"
-import { PromptTemplateCreate } from "@/types/prompt-template"
+import { useState, useEffect } from "react"
+import { PromptTemplate, PromptTemplateCreate } from "@/types/prompt-template"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -10,10 +10,11 @@ import { Textarea } from "@/components/ui/textarea"
 import { inferInputVariables } from "@/lib/utils"
 
 type Props = {
+    template?: PromptTemplate
     onSubmit: (form: PromptTemplateCreate) => Promise<void>
 }
 
-const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
+const PromptTemplateForm: React.FC<Props> = ({ template, onSubmit }) => {
     const [form, setForm] = useState<PromptTemplateCreate>({
         title: "",
         tags: [],
@@ -27,7 +28,22 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
 
     const [error, setError] = useState<string | null>(null)
 
-
+    useEffect(() => {
+        if (template) {
+            const { title, tags, project } = template;
+            const { prompt, input_variables, format } = template.templates[0];
+            setForm({
+                title,
+                tags,
+                project: project?.title || "",
+                template: {
+                    prompt,
+                    input_variables,
+                    format,
+                },
+            })
+        }
+    }, [])
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
@@ -50,9 +66,7 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
         }
     }
 
-    const handleChange = (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target
         setForm((currentForm) => {
             const updatedForm = { ...currentForm }
@@ -129,7 +143,7 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
                     onChange={handleChange}
                 />
                 <p className="text-sm text-muted-foreground">
-                    Use semi-colon as a delimiter to add multiple tags.
+                    Use semi-colon to separate multiple tags.
                 </p>
             </div>
             <div className="mb-6">
@@ -149,7 +163,7 @@ const PromptTemplateForm: React.FC<Props> = ({ onSubmit }) => {
                 </p>
             </div>
             <Button type="submit" size="default">
-                Save Template
+                {template ? "Update Template" : "Save Template"}
             </Button>
         </form>
     )

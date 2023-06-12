@@ -44,6 +44,10 @@ class LogsAPI extends Client {
     getLog(id: number): Promise<LogRequest> {
         return this.request({ method: 'GET', url: `/logs/${id}` });
     }
+
+    getLogsForPromptTemplate(promptTemplateID: number): Promise<LogRequest[]> {
+        return this.request({ method: 'GET', url: `/logs/prompt-template/${promptTemplateID}` });
+    }
 }
 
 class PromptTemplatesAPI extends Client {

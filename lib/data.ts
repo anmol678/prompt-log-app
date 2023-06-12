@@ -13,6 +13,11 @@ export async function getLog(id: number): Promise<Log> {
     return convertLogRequestToLog(logRequest);
 }
 
+export async function getLogsForPromptTemplate(promptTemplateID: number): Promise<Log[]> {
+    const logRequests: LogRequest[] = await logsAPI.getLogsForPromptTemplate(promptTemplateID);
+    return convertLogRequestsToLogs(logRequests);
+}
+
 function convertLogRequestsToLogs(logRequests: LogRequest[]): Log[] {
     return logRequests.map(convertLogRequestToLog);
 }

@@ -1,5 +1,5 @@
-import { Card, Text } from "@tremor/react";
-import { Heading2 } from "@/components/ui/heading";
+import { Card } from "@tremor/react";
+import { Heading2, Subtitle } from "@/components/ui/heading";
 import MetadataBadge from "@/components/ui/metadata-badge";
 import { Log } from "@/types/log"
 import MetadataTags from "@/components/ui/metadata-tags";
@@ -27,9 +27,9 @@ export default function LogHeader({ log: {
                     <Heading2 className="mr-2 break-words">
                         {function_name}
                     </Heading2>
-                    <Text className="text-accent-foreground/90 text-md">
+                    <Subtitle>
                         {request_time}
-                    </Text>
+                    </Subtitle>
                 </div>
                 <div className="flex flex-col space-y-4">
                     <MetadataTags project={project} tags={tags} />

@@ -30,3 +30,16 @@ export function Heading3({ children, className }: HeadingProps) {
         </h3>
     )
 }
+
+export function Subtitle({ children, className }: HeadingProps) {
+    return (
+        <h5
+            className={cn(
+                "text-accent-foreground/90 text-md font-normal",
+                className
+            )}
+        >
+            {children}
+        </h5>
+    )
+}

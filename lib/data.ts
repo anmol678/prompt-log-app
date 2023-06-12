@@ -1,6 +1,7 @@
 import { Log, LogRequest } from "@/types/log"
 import { logsAPI } from "./client"
 import { calculateResponseTime } from "./utils";
+import { Message } from "@/types/message";
 
 export async function getLogs(): Promise<Log[]> {
     const logRequests: LogRequest[] = await logsAPI.getLogs();
@@ -40,8 +41,8 @@ function convertLogRequestToLog(logRequest: LogRequest): Log {
         provider: logRequest.provider_type,
         model: logRequest.kwargs.model || logRequest.kwargs.model_name || '',
         tags: logRequest.tags,
-        prompt,
-        response,
+        prompt: prompt as Message[],
+        response: response as Message[],
         cost: logRequest.cost,
         tokens: logRequest.token_usage.total_tokens,
         temperature: logRequest.kwargs.temperature ?? -1,

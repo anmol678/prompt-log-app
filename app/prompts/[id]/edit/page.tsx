@@ -16,7 +16,7 @@ export default async function EditPromptTemplate({ params }: { params: { id: str
     if (!template) return <div>Prompt Template not found</div>
 
     const handleSubmit = async (form: PromptTemplateCreate) => {
-        await promptTemplatesAPI.updatePromptTemplate(Number(params.id), form as PromptTemplatePatch)
+        await api.updatePromptTemplate(Number(params.id), form as PromptTemplatePatch)
         router.push(`/prompts/${params.id}`)
     }
 

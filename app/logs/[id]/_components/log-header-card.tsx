@@ -24,12 +24,8 @@ export default function LogHeader({ log: {
         <Card className="p-6 flex flex-col md:flex-row gap-4 justify-between min-h-[calc(15vh)]">
             <div className="flex flex-col justify-between flex-shrink-2 md:w-[calc(100%-240px)] gap-4">
                 <div className="flex flex-col">
-                    <Heading2 className="mr-2 break-words">
-                        {function_name}
-                    </Heading2>
-                    <Subtitle>
-                        {request_time}
-                    </Subtitle>
+                    <Heading2 className="mr-2 break-words">{function_name}</Heading2>
+                    <Subtitle>{request_time}</Subtitle>
                 </div>
                 <div className="flex flex-col space-y-4">
                     <MetadataTags project={project} tags={tags} />

@@ -1,5 +1,5 @@
 import { Col, Grid } from "@tremor/react";
-import HeaderCard from "./_components/header-card";
+import LogHeaderCard from "./_components/log-header-card";
 import MessageCard from "./_components/message-card";
 import { Log } from "@/types/log"
 import { getLog } from "@/lib/data"
@@ -12,7 +12,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     return (
         <Grid numCols={1} className="gap-4 h-full flex flex-col">
             <Col numColSpan={1}>
-                <HeaderCard log={log} />
+                <LogHeaderCard log={log} />
             </Col>
             <Grid numCols={2} className="gap-4 flex-grow">
                 <Col>

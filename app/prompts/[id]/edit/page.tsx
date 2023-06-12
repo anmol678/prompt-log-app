@@ -4,7 +4,6 @@ import { Card } from "@tremor/react"
 import { Heading2 } from "@/components/ui/heading"
 import PromptTemplateForm from "../../_components/prompt-template-form"
 import { PromptTemplatePatch, PromptTemplate, PromptTemplateCreate } from "@/types/prompt-template"
-import { promptTemplatesAPI } from "@/lib/client"
 import { useRouter } from "next/navigation"
 import { promptTemplatesAPI as api } from "@/lib/client"
 

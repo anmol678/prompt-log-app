@@ -6,6 +6,7 @@ import Timeline from "./template-timeline";
 import PromptTemplateHeader from "./prompt-template-header";
 import { Heading3 } from "@/components/ui/heading";
 import PromptContainer from "../../_components/prompt-container";
+import PromptTemplateLogs from "./prompt-template-logs";
 import { PromptTemplate, Template } from "@/types/prompt-template";
 import { useRouter } from "next/navigation";
 
@@ -41,6 +42,8 @@ export default function PromptTemplateDetail({ template }: PromptTemplateDetailP
                 }
             </Card>
             <Card className="flex-1">
+                <Heading3 className="mb-4">Logs</Heading3>
+                <PromptTemplateLogs template={template} selectedTemplate={selectedTemplate} />
             </Card>
         </>
     )

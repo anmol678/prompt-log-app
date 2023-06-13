@@ -7,16 +7,21 @@ import { DataTablePagination } from "@/components/ui/table/table-pagination"
 import DataTableToolbar from "./data-table-toolbar"
 import { useRouter } from "next/navigation"
 
+interface PromptVersionData {
+    selected: string
+    versions: string[]
+}
+
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
-    isForPromptVersion?: string
+    promptVersion?: PromptVersionData
 }
 
 export default function DataTable<TData, TValue>({
     columns,
     data,
-    isForPromptVersion,
+    promptVersion,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -45,30 +50,30 @@ export default function DataTable<TData, TValue>({
     })
 
     useEffect(() => {
-        if (isForPromptVersion) {
+        if (promptVersion?.selected) {
             setColumnFilters(filters => {
                 const existingFilterIndex = filters.findIndex(filter => filter.id === "version_number")
 
                 if (existingFilterIndex !== -1) {
                     const updatedFilters = [...filters];
-                    updatedFilters[existingFilterIndex].value = [isForPromptVersion]
+                    updatedFilters[existingFilterIndex].value = [promptVersion.selected]
                     return updatedFilters
                 } else {
                     return [
                         ...filters,
                         {
                             id: "version_number",
-                            value: [isForPromptVersion]
+                            value: [promptVersion.selected]
                         }
                     ]
                 }
             })
         }
-    }, [isForPromptVersion])
+    }, [promptVersion?.selected])
 
     return (
         <>
-            <DataTableToolbar table={table} data={data} />
+            <DataTableToolbar table={table} data={data} versions={promptVersion?.versions} />
             <div className="rounded-md border bg-background">
                 <Table>
                     <TableHeader>

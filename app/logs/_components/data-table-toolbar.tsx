@@ -11,19 +11,22 @@ import { LogBase } from "@/types/log"
 interface DataTableToolbarProps<TData> {
     table: Table<TData>
     data: TData[]
+    versions?: string[]
 }
 
 export default function DataTableToolbar<TData>({
     table,
     data,
+    versions: versionsArr
 }: DataTableToolbarProps<TData>) {
     const isFiltered =
         table.getPreFilteredRowModel().rows.length >
         table.getFilteredRowModel().rows.length
 
-    const projects = getUniqueProjects(data as LogBase[]).map(p => ({ label: p, value: p }));
-    const tags = getUniqueTags(data as LogBase[]).map(t => ({ label: t, value: t }));
-    const models = getUniqueModels(data as LogBase[]).map(m => ({ label: m, value: m }));
+    const projects = getUniqueProjects(data as LogBase[]).map(p => ({ label: p, value: p }))
+    const tags = getUniqueTags(data as LogBase[]).map(t => ({ label: t, value: t }))
+    const models = getUniqueModels(data as LogBase[]).map(m => ({ label: m, value: m }))
+    const versions = versionsArr?.map(v => ({ label: v, value: v }))
 
     return (
         <div className="flex items-center justify-between mb-4">
@@ -57,11 +60,11 @@ export default function DataTableToolbar<TData>({
                         options={models}
                     />
                 )}
-                {table.getColumn("version_number") && (
+                {table.getColumn("version_number") && versions && (
                     <DataTableFacetedFilter
                         column={table.getColumn("version_number")}
                         title="Version"
-                        options={["0", "1", "2"].map(p => ({ label: p, value: p }))}
+                        options={versions}
                     />
                 )}
                 {isFiltered && (

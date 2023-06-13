@@ -19,9 +19,12 @@ export default function PromptTemplateLogs({ template, selectedTemplate }: Promp
         getLogsForPromptTemplate(template.id).then(setLogs)
     }, [])
 
-    console.log(logs, template, selectedTemplate.version);
+    const promptVersion = {
+        selected: String(selectedTemplate.version),
+        versions: template.templates.map(t => String(t.version)),
+    }
 
     return (
-        <DataTable columns={columnsWithVersion} data={logs} isForPromptVersion={String(selectedTemplate.version)} />
+        <DataTable columns={columnsWithVersion} data={logs} promptVersion={promptVersion} />
     )
 }

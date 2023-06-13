@@ -57,6 +57,13 @@ export default function DataTableToolbar<TData>({
                         options={models}
                     />
                 )}
+                {table.getColumn("version_number") && (
+                    <DataTableFacetedFilter
+                        column={table.getColumn("version_number")}
+                        title="Version"
+                        options={["0", "1", "2"].map(p => ({ label: p, value: p }))}
+                    />
+                )}
                 {isFiltered && (
                     <Button
                         variant="ghost"

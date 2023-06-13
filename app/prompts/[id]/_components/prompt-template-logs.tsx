@@ -22,6 +22,6 @@ export default function PromptTemplateLogs({ template, selectedTemplate }: Promp
     console.log(logs, template, selectedTemplate.version);
 
     return (
-        <DataTable columns={columnsWithVersion} data={logs} />
+        <DataTable columns={columnsWithVersion} data={logs} isForPromptVersion={String(selectedTemplate.version)} />
     )
 }

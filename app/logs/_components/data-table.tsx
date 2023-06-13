@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { ColumnDef, ColumnFiltersState, SortingState, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from "@tanstack/react-table"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table/table"
 import { DataTablePagination } from "@/components/ui/table/table-pagination"
@@ -10,11 +10,13 @@ import { useRouter } from "next/navigation"
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+    isForPromptVersion?: string
 }
 
 export default function DataTable<TData, TValue>({
     columns,
     data,
+    isForPromptVersion,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -41,6 +43,28 @@ export default function DataTable<TData, TValue>({
             },
         },
     })
+
+    useEffect(() => {
+        if (isForPromptVersion) {
+            setColumnFilters(filters => {
+                const existingFilterIndex = filters.findIndex(filter => filter.id === "version_number")
+
+                if (existingFilterIndex !== -1) {
+                    const updatedFilters = [...filters];
+                    updatedFilters[existingFilterIndex].value = [isForPromptVersion]
+                    return updatedFilters
+                } else {
+                    return [
+                        ...filters,
+                        {
+                            id: "version_number",
+                            value: [isForPromptVersion]
+                        }
+                    ]
+                }
+            })
+        }
+    }, [isForPromptVersion])
 
     return (
         <>

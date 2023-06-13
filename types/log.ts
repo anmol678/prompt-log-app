@@ -1,8 +1,9 @@
+import { type } from "os"
 import { Message } from "./message"
 import { Project } from "./project"
 import { PromptTemplateWithVersion } from "./prompt-template"
 
-export type Log = {
+export type LogBase = {
     id: number
     function_name: string
     provider: string
@@ -16,7 +17,14 @@ export type Log = {
     cost: number
     tags: string[]
     project: Project | null
+}
+
+export type Log = LogBase & {
     prompt_templates: PromptTemplateWithVersion[]
+}
+
+export type LogWithPromptVersion = LogBase & {
+    version_number: string
 }
 
 export type LogRequest = {
@@ -45,4 +53,5 @@ export type LogRequest = {
     id: number
     project: Project | null
     prompt_templates: PromptTemplateWithVersion[]
+    version_number?: number
 }

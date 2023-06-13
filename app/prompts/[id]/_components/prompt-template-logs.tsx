@@ -5,7 +5,7 @@ import { PromptTemplate, Template } from "@/types/prompt-template";
 import DataTable from "@/app/logs/_components/data-table";
 import { columns } from "@/app/logs/_components/columns";
 import { getLogsForPromptTemplate } from "@/lib/data";
-import { Log } from "@/types/log";
+import { LogWithPromptVersion } from "@/types/log";
 
 type PromptTemplateLogsProps = {
     template: PromptTemplate
@@ -13,7 +13,7 @@ type PromptTemplateLogsProps = {
 }
 
 export default function PromptTemplateLogs({ template, selectedTemplate }: PromptTemplateLogsProps) {
-    const [logs, setLogs] = useState<Log[]>([])
+    const [logs, setLogs] = useState<LogWithPromptVersion[]>([])
 
     useEffect(() => {
         getLogsForPromptTemplate(template.id).then(setLogs)

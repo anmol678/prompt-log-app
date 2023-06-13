@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { PromptTemplate, Template } from "@/types/prompt-template";
 import DataTable from "@/app/logs/_components/data-table";
-import { columns } from "@/app/logs/_components/columns";
+import { columnsWithVersion } from "@/app/logs/_components/columns";
 import { getLogsForPromptTemplate } from "@/lib/data";
 import { LogWithPromptVersion } from "@/types/log";
 
@@ -22,6 +22,6 @@ export default function PromptTemplateLogs({ template, selectedTemplate }: Promp
     console.log(logs, template, selectedTemplate.version);
 
     return (
-        <DataTable columns={columns} data={logs} />
+        <DataTable columns={columnsWithVersion} data={logs} />
     )
 }

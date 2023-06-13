@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
-import { Log } from "@/types/log"
+import { LogBase } from "@/types/log"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -13,7 +13,7 @@ export function calculateResponseTime(requestTime: string, responseTime: string)
   return `${responseTimeInSeconds}s`;
 }
 
-export function getUniqueProjects(logs: Log[]): string[] {
+export function getUniqueProjects(logs: LogBase[]): string[] {
   let uniqueProjects: Set<string> = logs.reduce((projectSet, log) => {
     if (log.project) {
       projectSet.add(log.project.title);
@@ -24,7 +24,7 @@ export function getUniqueProjects(logs: Log[]): string[] {
   return Array.from(uniqueProjects);
 }
 
-export function getUniqueTags(logs: Log[]): string[] {
+export function getUniqueTags(logs: LogBase[]): string[] {
   let uniqueTags: Set<string> = logs.reduce((tagSet, log) => {
     if (log.tags) {
       log.tags.forEach(tag => tagSet.add(tag));
@@ -35,7 +35,7 @@ export function getUniqueTags(logs: Log[]): string[] {
   return Array.from(uniqueTags);
 }
 
-export function getUniqueModels(logs: Log[]): string[] {
+export function getUniqueModels(logs: LogBase[]): string[] {
   let uniqueModels: Set<string> = logs.reduce((modelSet, log) => {
     if (log.model) {
       modelSet.add(log.model);

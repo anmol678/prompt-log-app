@@ -101,6 +101,7 @@ export default function DataTable<TData, TValue>({
                                     key={row.id}
                                     data-state={row.getIsSelected() && "selected"}
                                     isDataRow
+                                    // @ts-ignore
                                     onClick={() => router.push(`/logs/${row.original.id}`)}
                                 >
                                     {row.getVisibleCells().map((cell) => (

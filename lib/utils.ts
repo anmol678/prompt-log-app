@@ -46,7 +46,7 @@ export function getUniqueModels(logs: LogBase[]): string[] {
   return Array.from(uniqueModels);
 }
 
-export function inferInputVariables(prompt: string) {
+export function inferInputVariables(prompt: string): string[] {
   const regex = /\{+(.*?)\}+/g
   const matches = []
   let match
@@ -54,4 +54,8 @@ export function inferInputVariables(prompt: string) {
     matches.push(match[1])
   }
   return matches
+}
+
+export function formatDateTime(date: Date): string {
+  return `${new Date(date).toLocaleTimeString()} ${new Date(date).toDateString()}`
 }

@@ -1,5 +1,5 @@
-
 import { Template } from "@/types/prompt-template";
+import { formatDateTime } from "@/lib/utils";
 
 type TimelineItemProps = {
     selected: boolean;
@@ -42,7 +42,7 @@ const Timeline: React.FC<TimelineProps> = ({ templates, selectedTemplate, onSele
                     key={index}
                     selected={selectedTemplate === index}
                     label={`Version ${t.version}`}
-                    subLabel={`${new Date(t.created_at).toLocaleTimeString()} ${new Date(t.created_at).toDateString()}`}
+                    subLabel={formatDateTime(t.created_at)}
                     onClick={() => onSelect(index)}
                 />
             ))}

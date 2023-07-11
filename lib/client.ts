@@ -9,7 +9,7 @@ class Client {
         this.baseURL = 'http://127.0.0.1:8000/api';
     }
 
-    async request<T>({ method, url, data, useNoStore = false }: RequestOptions): Promise<T> {
+    async request<T>({ method, url, data, }: RequestOptions): Promise<T> {
         try {
             const response = await fetch(this.baseURL + url, {
                 method,
@@ -19,9 +19,6 @@ class Client {
                 ...(data && ({
                     body: JSON.stringify(data),
                 })),
-                ...(useNoStore && ({
-                    cache: 'no-store',
-                }))
             });
 
             if (!response.ok) {
@@ -52,11 +49,11 @@ class LogsAPI extends Client {
 
 class PromptTemplatesAPI extends Client {
     getPromptTemplates(): Promise<PromptTemplate[]> {
-        return this.request({ method: 'GET', url: '/prompt-templates', useNoStore: true });
+        return this.request({ method: 'GET', url: '/prompt-templates' });
     }
 
     getPromptTemplate(id: number): Promise<PromptTemplate> {
-        return this.request({ method: 'GET', url: `/prompt-templates/${id}`, useNoStore: true });
+        return this.request({ method: 'GET', url: `/prompt-templates/${id}` });
     }
 
     createPromptTemplate(data: PromptTemplateCreate): Promise<PromptTemplate> {

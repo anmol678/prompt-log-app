@@ -27,7 +27,7 @@ export default function PromptTemplateDetail({ template }: PromptTemplateDetailP
 
     return (
         <>
-            <Grid numCols={2} className="gap-4 flex flex-none min-h-[calc(12vh)] max-h-[calc(16vh)]">
+            <Grid numCols={2} className="gap-4 flex flex-none min-h-[calc(16vh)] max-h-[calc(16vh)]">
                 <Card className="p-6">
                     <PromptTemplateHeader template={template} onEdit={handleEdit} />
                 </Card>

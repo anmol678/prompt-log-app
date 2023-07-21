@@ -3,15 +3,13 @@ import { LogRequest } from '@/types/log';
 import { PromptTemplate, PromptTemplateCreate, PromptTemplatePatch } from '@/types/prompt-template';
 
 class Client {
-    private baseURL: string;
 
-    constructor() {
-        this.baseURL = 'http://127.0.0.1:8000/api';
-    }
-
-    async request<T>({ method, url, data, }: RequestOptions): Promise<T> {
+    async request<T>({ method, url, data }: RequestOptions): Promise<T> {
         try {
-            const response = await fetch(this.baseURL + url, {
+            const isServerSide = typeof window === 'undefined';
+            const API_URL = isServerSide ? 'http://backend:8000/api' : 'http://localhost:8000/api';
+
+            const response = await fetch(API_URL + url, {
                 method,
                 headers: {
                     'Content-Type': 'application/json',

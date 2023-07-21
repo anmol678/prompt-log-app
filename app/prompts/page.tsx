@@ -6,6 +6,8 @@ import { PromptTemplate } from "@/types/prompt-template";
 import { promptTemplatesAPI as api } from "@/lib/client"
 import RefreshOnView from "@/components/refresh-onview";
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page() {
     const data: PromptTemplate[] = await api.getPromptTemplates()
 

@@ -5,6 +5,8 @@ import { Heading2 } from "@/components/ui/heading";
 import { getLogs } from "@/lib/data"
 import { Log } from "@/types/log"
 
+export const dynamic = 'force-dynamic'
+
 export default async function Page() {
     const data: Log[] = await getLogs()
 

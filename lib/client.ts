@@ -6,8 +6,7 @@ class Client {
 
     async request<T>({ method, url, data }: RequestOptions): Promise<T> {
         try {
-            const isServerSide = typeof window === 'undefined';
-            const API_URL = isServerSide ? 'http://backend:8000/api' : 'http://localhost:8000/api';
+            const API_URL = process.env.API_URL || 'http://localhost:4000/api'
 
             const response = await fetch(API_URL + url, {
                 method,

@@ -2,12 +2,13 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { WS_URL } from '@/config/api';
 
 export default function WebSocketRefresh() {
     const router = useRouter();
 
     useEffect(() => {
-        const socket = new WebSocket(`ws://localhost:4000/api/ws/test123`);
+        const socket = new WebSocket(`${WS_URL}/ws/test123`);
 
         socket.onopen = (event) => {
             console.log('WebSocket is open now.');

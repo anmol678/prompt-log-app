@@ -1,3 +1,4 @@
+import { API_URL } from '@/config/api';
 import { RequestOptions, APIResponse } from '@/types/client';
 import { LogRequest } from '@/types/log';
 import { PromptTemplate, PromptTemplateCreate, PromptTemplatePatch } from '@/types/prompt-template';
@@ -6,8 +7,6 @@ class Client {
 
     async request<T>({ method, url, data }: RequestOptions): Promise<T> {
         try {
-            const API_URL = process.env.API_URL || 'http://localhost:4000/api'
-
             const response = await fetch(API_URL + url, {
                 method,
                 headers: {

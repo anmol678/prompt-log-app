@@ -1,6 +1,7 @@
 import { Grid, Col, Card } from "@tremor/react";
 import { columns } from "./_components/columns"
 import DataTable from "./_components/data-table";
+import WebSocketRefresh from "./_components/websocket-refresh";
 import { Heading2 } from "@/components/ui/heading";
 import { getLogs } from "@/lib/data"
 import { Log } from "@/types/log"
@@ -18,6 +19,7 @@ export default async function Page() {
                     <DataTable columns={columns} data={data} />
                 </Card>
             </Col>
+            <WebSocketRefresh />
         </Grid>
     )
 }
